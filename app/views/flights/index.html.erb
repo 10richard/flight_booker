@@ -1,5 +1,9 @@
-<h1>Flights Index</h1>
+<h1>Book a Flight</h1>
 
 <%= form_with model: @flight, method: :get do |f| %>
-    <%= f.submit %>
+    <%= f.collection_select(:origin_id, Airport.all.order(:code), :id, :code, prompt: 'Origin') %>
+    <%= f.collection_select(:dest_id, Airport.all.order(:code), :id, :code, prompt: 'Destination') %>    
+    <%= f.select(:flight_date, @dates, prompt: 'Date of Departure') %>
+    <%= f.select(:tickets, 1..4, prompt: 'Num of Tickets') %>
+    <%= f.submit 'Search' %>
 <% end %>
