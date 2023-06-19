@@ -54,6 +54,7 @@ GEM
     activerecord (7.0.5)
       activemodel (= 7.0.5)
       activesupport (= 7.0.5)
+    activerecord-reset-pk-sequence (0.2.1)
     activestorage (7.0.5)
       actionpack (= 7.0.5)
       activejob (= 7.0.5)
@@ -210,6 +211,7 @@ PLATFORMS
   arm64-darwin-22
 
 DEPENDENCIES
+  activerecord-reset-pk-sequence
   bootsnap
   capybara
   debug
