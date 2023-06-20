@@ -45,10 +45,10 @@ def get_rand_time
 end
 
 def seed_rand_num_of_flights_on_day(d_code, arrivals, date)
-    rand(0..5).times do 
-        arrival = arrivals[rand(0..arrivals.count - 1)]
-        seed_flight(d_code, arrival[0], date, arrival[1])
-        arrivals.delete(arrival)
+    arrivals.each do |code, duration|
+        rand(0..5).times do 
+            seed_flight(d_code, code, date, duration)
+        end
     end
 end
 
@@ -56,7 +56,7 @@ def seed_flights
     current_date = Date.today
     (current_date..current_date + 1.month).each do |day|
         AIRPORTS_AND_DURATIONS.each do |departure_code, arrivals|
-            seed_rand_num_of_flights_on_day(departure_code, arrivals.to_a, day)
+            seed_rand_num_of_flights_on_day(departure_code, arrivals, day)
         end
     end
 end
