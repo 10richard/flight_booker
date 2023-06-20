@@ -35,14 +35,13 @@ def seed_flight(depart_port, arrive_port, date, air_time)
         departure_airport: Airport.find_by(code: depart_port.to_s).id,
         arrival_airport: Airport.find_by(code: arrive_port.to_s).id,
         departure_date: date,
-        departure_time: 'test',
+        departure_time: get_rand_time,
         duration: air_time
     )
 end
 
 def get_rand_time
-    Time.at(rand(0..23).hours + rand(0..59).minutes)
-    'gyat'
+    Time.at(rand(0..23).hours + rand(0..59).minutes).strftime("%I:%M%p")
 end
 
 def seed_rand_num_of_flights_on_day(d_code, arrivals, date)
