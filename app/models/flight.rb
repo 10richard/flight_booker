@@ -1,5 +1,6 @@
 class Flight < ApplicationRecord
     belongs_to :airport, optional: true
+    has_many :bookings
 
     def self.user_search(query_params)
         where(departure_airport: query_params[:origin_id],
