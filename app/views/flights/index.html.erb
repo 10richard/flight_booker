@@ -3,7 +3,20 @@
 <%= form_with model: @flight, method: :get do |f| %>
     <%= f.collection_select(:origin_id, Airport.all.order(:code), :id, :code, prompt: 'Origin') %>
     <%= f.collection_select(:dest_id, Airport.all.order(:code), :id, :code, prompt: 'Destination') %>    
-    <%= f.select(:flight_date, @dates, prompt: 'Date of Departure') %>
+    <%= f.collection_select(:flight_date, @dates, :departure_date, :departure_date, prompt: 'Date of Departure') %>
     <%= f.select(:tickets, 1..4, prompt: 'Num of Tickets') %>
     <%= f.submit 'Search' %>
+<% end %>
+
+<%# Display all available flights, if there any %>
+<%# Otherwise display "No flights available" %>
+<% if @available_flights.present? %>
+    <h4><%= pluralize(@available_flights.count, 'flight') %> available from <%= @origin_airport.code %> to <%= @arrival_airport.code %> on <%= @flight_date.to_date.strftime('%B %d, %Y') %></h4>
+    <%= form_with model: @flight, method: :get do |f| %>
+        <%= f.collection_radio_buttons(:booking, @available_flights, :id, :departure_time) %>
+        <%= f.text_field('tickets', value: params[:tickets], type: 'hidden') %>
+        <%= f.submit 'Book' %>
+    <%end%>
+<% else %>
+    <h3>No available flights</h3>
 <% end %>
