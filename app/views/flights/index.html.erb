@@ -13,7 +13,7 @@
 <% if @available_flights.present? %>
     <h4><%= pluralize(@available_flights.count, 'flight') %> available from <%= @origin_airport.code %> to <%= @arrival_airport.code %> on <%= @flight_date.to_date.strftime('%B %d, %Y') %></h4>
     <%= form_with model: @flight, method: :get do |f| %>
-        <%= f.collection_radio_buttons(:booking, @available_flights, :id, :departure_time) %>
+        <%= f.collection_radio_buttons(:flight_id, @available_flights, :id, :departure_time) %>
         <%= f.text_field('tickets', value: params[:tickets], type: 'hidden') %>
         <%= f.submit 'Book' %>
     <%end%>
