@@ -1,5 +1,7 @@
 class Flight < ApplicationRecord
-    belongs_to :airport, optional: true
+    
+    belongs_to :departing_airport, class_name: 'Airport', foreign_key: 'departure_airport'
+    belongs_to :arriving_airport, class_name: 'Airport', foreign_key: 'arrival_airport'
     has_many :bookings
 
     def self.user_search(query_params)
