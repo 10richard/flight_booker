@@ -1,0 +1,4 @@
+<h1>Your booked flight on <%= @booking.flight.departure_date.strftime('%B %d, %Y') %></h1>
+
+<h2>Departure: <%= @booking.flight.departure_time %>
+<h2>From <%= @booking.flight.departing_airport.code %> to <%= @booking.flight.arriving_airport.code %></h2>
